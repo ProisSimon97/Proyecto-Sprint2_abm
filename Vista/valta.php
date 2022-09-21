@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alta Equipo</title>
+    <title>Alta</title>     
     <link rel="stylesheet" href="css\bootstrap.css"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js\formValidation.js"></script>
 </head>
 <body>
-<?php include("Vista/nav.php"); ?>
- <br><br>
+<?php include("nav.php"); ?>
+<br><br>
 
 <?php 
     $id = "";
@@ -33,12 +33,6 @@
         $finales = $_GET['finales'];
     
         $ruta = "modificacion.php";
-
-        ?>
-        <script>
-            $("#send-boton").val("Modificar");
-        </script> 
-        <?php 
     }
 ?>
 
@@ -46,9 +40,16 @@
     <div class="row">
         <div class="col-xs-1-12">
              <div class="card">
-                <div id="card-titulo" class="card-header">
-                    Alta Equipo
-                </div>
+             <?php 
+                if(isset($_GET['id'])) {?>  
+                    <div id="card-titulo" class="card-header">
+                        Modificar Equipo
+                    </div>       
+                <?php } else {?>
+                    <div id="card-titulo" class="card-header">
+                        Alta Equipo
+                    </div>
+                <?php }?>
                 <div class="card-body">
                     <form method="get" action="<?php echo $ruta?>">
                         <fieldset>
@@ -66,7 +67,7 @@
                                 <input value="<?php echo $clasificacion?>" name="clasificacion" type="number" class="form-control" id="posrank" placeholder="Ingrese posicion en el ranking">
                             </div>
                             <div class="form-group">
-                                <label for="titulosg" class="form-label mt-4">Titulos ganados</label>
+                                <label for="titulosg" class="form-label mt-4">Titulos Ganados</label>
                                 <input value="<?php echo $titulos?>" name="titulos" type="number" class="form-control" id="titulosg" placeholder="Ingrese cantidad de titulos ganados">
                             </div>
                             <div class="form-group">
@@ -74,13 +75,32 @@
                                 <input value="<?php echo $finales?>" name="finales" type="number" class="form-control" id="finalesj" placeholder="Ingrese cantidad de finales jugadas">
                             </div>
                             <br>
-                            <button id="send-boton" type="submit" class="btn btn-primary" onclick="return formValidation()">Enviar</button>
+
+                            <?php 
+                            if(isset($_GET['id'])) {?>  
+                                <button id="send-boton" type="submit" class="btn btn-primary" onclick="return formValidation()">Modificar</button>
+                            
+                            <?php } else {?>
+                                <button id="send-boton" type="submit" class="btn btn-primary" onclick="return formValidation()">Enviar</button>
+                            <?php }?>
                         </fieldset>
                         <br>
                         <div id="cont-errors" class="alert alert-dismissible alert-danger">
                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                             <strong>Oh snap!: </strong><span id="errors" class="errors"></span>
                         </div>
+
+                        <?php
+                        if(isset($_GET['mensaje'])) {
+
+                            $mensaje = $_GET['mensaje'];
+
+                            echo " <div id='cont-errors' class='alert alert-dismissible alert-danger'>
+                            <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+                            <strong>Oh snap!: </strong><span id='errors' class='errors'> $mensaje </span>
+                        </div>";
+                        }
+                        ?>
                     </form>
                 </div>
                 <div class="card-footer text-muted"><br></div>

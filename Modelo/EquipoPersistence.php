@@ -1,5 +1,4 @@
 <?php
-
 include("DataBasePersistence.php");
 include("Equipo.php");
 

@@ -1,5 +1,4 @@
 <?php
-
 class DataBasePersistence {
 
   public $servername = "localhost";
@@ -8,9 +7,7 @@ class DataBasePersistence {
   public $dbname = "worldcupdb";
   public $conn;
   
-
   public function conectar() {
-   
     $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
 
     if ($this->conn->connect_error) {
@@ -22,5 +19,4 @@ class DataBasePersistence {
     $this->conn->close();
   }
 }
-
 ?>

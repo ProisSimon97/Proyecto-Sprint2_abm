@@ -8,14 +8,6 @@
   $equipos = $base->recuperarEquipos();
 ?>
 
-
-<?php if (isset($_GET['mensaje'])) {?>
-<div class="alert alert-dismissible alert-success">
-  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-  <strong>Equipo</strong> creado con exito!
-</div>
-<?php }?>
-
 <div class="container">
     <div class="row">
         <div class="col-xs-1-12">
@@ -24,6 +16,14 @@
                     Listado de Equipos
                 </div>
                 <div class="card-body">
+
+                <?php if (isset($_GET['mensaje'])) {?>
+                    <div class="alert alert-dismissible alert-success">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        Equipo <strong><?php echo $_GET['mensaje']?></strong> con exito!
+                    </div>
+                <?php }?>
+                
                     <table class="table table-hover">
                     <thead>
                         <tr>
